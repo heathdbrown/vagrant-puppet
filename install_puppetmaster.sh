@@ -7,6 +7,7 @@ set -e -x
 export DEBIAN_FRONTEND=noninteractive
 
 echo "Adding Puppetlabs repository..."
+sudo apt-get install curl -y
 curl -o /tmp/puppetlabs-release-precise.deb http://apt.puppetlabs.com/puppetlabs-release-precise.deb
 dpkg -i /tmp/puppetlabs-release-precise.deb
 
@@ -33,4 +34,4 @@ echo "Enabling autostart for Puppet..."
 cat /etc/default/puppet | sed s/START=no/START=yes/g > /etc/default/puppet.tmp && mv /etc/default/puppet.tmp /etc/default/puppet
 
 echo "Stating Puppet ..."
-service puppetmaster start
+sudo service puppetmaster restart
