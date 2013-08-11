@@ -11,11 +11,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppetmaster.vm.box = "precise64"
       puppetmaster.vm.network :private_network, ip: "192.168.50.4"
       puppetmaster.vm.provision :shell, :path => "install_puppetmaster.sh"
+      puppetmaster.vm.provision :shell, :path => "vagrant_puppet_hosts.sh"
   end
 
   config.vm.define :puppet do |puppet|
       puppet.vm.box = "precise64"
       puppet.vm.network :private_network, ip: "192.168.50.5"
       puppet.vm.provision :shell, :path => "install_puppet.sh"
+      puppet.vm.provision :shell, :path => "vagrant_puppet_hosts.sh"
   end
 end
